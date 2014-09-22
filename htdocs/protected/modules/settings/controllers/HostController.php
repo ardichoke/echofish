@@ -166,8 +166,8 @@ class HostController extends Controller {
    */
   public function actionResolve_all()
   {
-    if (Yii::app ()->request->isPostRequest)
-    {
+//    if (Yii::app ()->request->isPostRequest)
+//    {
       $trans = Yii::app ()->db->beginTransaction ();
       try
       {     
@@ -188,8 +188,9 @@ class HostController extends Controller {
         $this->redirect ( isset ( $_POST ['returnUrl'] ) ? $_POST ['returnUrl'] : array (
             'admin' 
         ) );
-    } else
-      throw new CHttpException ( 400, 'Invalid request. Please do not repeat this request again.' );
+//    }
+//    else
+//      throw new CHttpException ( 400, 'Invalid request. Please do not repeat this request again.' );
   }
   
   public function actionResolve($id)
@@ -209,6 +210,7 @@ class HostController extends Controller {
       {
          Yii::app()->user->setFlash('error',"<strong>Error in resolving host</strong>");
          $trans->rollback();
+         
       }      
       // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
       if (! isset ( $_GET ['ajax'] ))
